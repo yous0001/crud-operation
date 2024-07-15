@@ -20,7 +20,7 @@
         <label for="productDescrition">productDescrition:</label>
         <textarea class="form-control mb-3" id="productDescrition"></textarea>
         <button class="btn btn-primary" onclick="createProduct()">ADD Product</button>
-        <button class="btn btn-danger"> reset</button>
+        <button class="btn btn-danger" onclick="reset()"> reset</button>
     </div>
     <input type="text" class="form-control w-50 m-auto" id="serachProduct" placeholder="Serach....">
 
@@ -37,16 +37,7 @@
                     <th>delete</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>sumsung</td>
-                    <td>phone</td>
-                    <td>5000</td>
-                    <td>phone</td>
-                    <td><button class="btn btn-outline-warning"><i class="fa-solid fa-pen-to-square"></i></button></td>
-                    <td><button class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></button></td>
-                </tr>
+            <tbody id="tableBody">
             </tbody>
         </table>
     </divclass=>
