@@ -9,6 +9,47 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+    <div class="w-75 m-auto my-5 shadow-lg p-5">
+        <h1 class="text-center text-uppercase fw-bold">crud system</h1>
+        <label for="productName">productName:</label>
+        <input class="form-control mb-3" type="text" id="productName">
+        <label for="productCategory">productCategory:</label>
+        <input class="form-control mb-3" type="text" id="productCategory">
+        <label for="productPrice">productPrice:</label>
+        <input class="form-control mb-3" type="text" id="productPrice">
+        <label for="productDescrition">productDescrition:</label>
+        <textarea class="form-control mb-3" id="productDescrition"></textarea>
+        <button class="btn btn-primary">ADD Product</button>
+        <button class="btn btn-danger"> reset</button>
+    </div>
+    <input type="text" class="form-control w-50 m-auto" id="serachProduct" placeholder="Serach....">
+
+    <div class="w-75 m-auto my-5">
+        <table class="table ">
+            <thead>
+                <tr>
+                    <th>index</th>
+                    <th>name</th>
+                    <th>category</th>
+                    <th>price</th>
+                    <th>description</th>
+                    <th>update</th>
+                    <th>delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>sumsung</td>
+                    <td>phone</td>
+                    <td>5000</td>
+                    <td>phone</td>
+                    <td><button class="btn btn-outline-success"><i class="fa-solid fa-pen-to-square"></i></button></td>
+                    <td><button class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></button></td>
+                </tr>
+            </tbody>
+        </table>
+    </divclass=>
     
 
     <script src="./jquery/code.jquery.com_jquery-3.7.0.min.js"></script>
