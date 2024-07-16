@@ -15,6 +15,7 @@ function createProduct(){
     reset()
     display()
 }
+
 function reset(){
     productName.value=""
     productCategory.value=""
@@ -31,9 +32,24 @@ function display(){
                     <td>${products[i].prodCategory}</td>
                     <td>${products[i].prodPrice}</td>
                     <td>${products[i].prodDescrition}</td>
-                    <td><button class="btn btn-outline-warning"><i class="fa-solid fa-pen-to-square"></i></button></td>
-                    <td><button class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></button></td>
+                    <td><button onclick="updateProduct(${i})"  class="btn btn-outline-warning"><i class="fa-solid fa-pen-to-square"></i></button></td>
+                    <td><button onclick="deleteProduct(${i})" class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></button></td>
                 </tr>`
     }
     document.getElementById("tableBody").innerHTML=cartona;
+}
+function deleteProduct(i){
+    products.splice(i,1)
+    display();
+}
+function updateProduct(i){
+    let product={
+        prodName:productName.value,
+        prodCategory:productCategory.value,
+        prodPrice:productPrice.value,
+        prodDescrition:productDescrition.value
+    }
+    products.splice(i,1,product)
+    reset()
+    display()
 }
