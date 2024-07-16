@@ -3,6 +3,7 @@ let productName=document.getElementById("productName");
 let productCategory=document.getElementById("productCategory");
 let productPrice=document.getElementById("productPrice");
 let productDescrition=document.getElementById("productDescrition");
+let searchfield=document.getElementById("serachProduct");
 
 function createProduct(){
     let product={
@@ -37,6 +38,7 @@ function display(){
                 </tr>`
     }
     document.getElementById("tableBody").innerHTML=cartona;
+    document.getElementById("count").innerHTML=products.length;
 }
 function deleteProduct(i){
     products.splice(i,1)
@@ -52,4 +54,22 @@ function updateProduct(i){
     products.splice(i,1,product)
     reset()
     display()
+}
+
+function search(){
+    let cartona="";
+    for(let i=0;i<products.length;i++){
+        if(products[i].prodName.includes(searchfield.value)){
+            cartona+=`<tr>
+        <td>${i+1}</td>
+        <td>${products[i].prodName}</td>
+        <td>${products[i].prodCategory}</td>
+        <td>${products[i].prodPrice}</td>
+        <td>${products[i].prodDescrition}</td>
+        <td><button onclick="updateProduct(${i})"  class="btn btn-outline-warning"><i class="fa-solid fa-pen-to-square"></i></button></td>
+        <td><button onclick="deleteProduct(${i})" class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></button></td>
+    </tr>`
+        }
+    }
+    document.getElementById("tableBody").innerHTML=cartona;
 }

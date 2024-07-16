@@ -22,9 +22,10 @@
         <button class="btn btn-primary" onclick="createProduct()">ADD Product</button>
         <button class="btn btn-danger" onclick="reset()"> reset</button>
     </div>
-    <input type="text" class="form-control w-50 m-auto" id="serachProduct" placeholder="Serach....">
+    <input type="text" class="form-control w-50 m-auto" onkeyup="search()" id="serachProduct" placeholder="Serach....">
 
     <div class="w-75 m-auto my-5">
+        <p>products: <span id="count"></span></p>
         <table class="table ">
             <thead>
                 <tr>
