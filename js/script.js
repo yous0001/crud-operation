@@ -60,9 +60,10 @@ function search(){
     let cartona="";
     for(let i=0;i<products.length;i++){
         if(products[i].prodName.includes(searchfield.value)){
+            let newName=products[i].prodName.replace(searchfield.value,`<span class="text-bg-success">${searchfield.value}</span>`)
             cartona+=`<tr>
         <td>${i+1}</td>
-        <td>${products[i].prodName}</td>
+        <td>${newName}</td>
         <td>${products[i].prodCategory}</td>
         <td>${products[i].prodPrice}</td>
         <td>${products[i].prodDescrition}</td>
