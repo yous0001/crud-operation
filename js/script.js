@@ -4,8 +4,19 @@ let productCategory=document.getElementById("productCategory");
 let productPrice=document.getElementById("productPrice");
 let productDescrition=document.getElementById("productDescrition");
 let searchfield=document.getElementById("serachProduct");
+let updateFlag=false;
+let currentIndex;
 
-
+function changebtn(){
+    if(updateFlag==false){
+        document.getElementById("main-btn").innerHTML="ADD Product"
+        document.getElementById("main-btn").className="btn btn-primary"
+    }
+    else{
+        document.getElementById("main-btn").innerHTML="update Product"
+        document.getElementById("main-btn").className="btn btn-success"
+    }
+}
 if(localStorage.getItem("products")===null){
     products=[];
 }
@@ -13,18 +24,37 @@ else{
     products=JSON.parse(localStorage.getItem("products"));
     display();
 }
+
 function createProduct(){
-    let product={
-        prodName:productName.value,
-        prodCategory:productCategory.value,
-        prodPrice:productPrice.value,
-        prodDescrition:productDescrition.value
+    if(updateFlag==false){
+        let product={
+            prodName:productName.value,
+            prodCategory:productCategory.value,
+            prodPrice:productPrice.value,
+            prodDescrition:productDescrition.value
+        }
+        products.push(product)
+        localStorage.setItem("products",JSON.stringify(products))
+        reset()
+        display()
     }
-    products.push(product)
-    localStorage.setItem("products",JSON.stringify(products))
-    reset()
-    display()
+    else{
+        let product={
+            prodName:productName.value,
+            prodCategory:productCategory.value,
+            prodPrice:productPrice.value,
+            prodDescrition:productDescrition.value
+        }
+        products[currentIndex]=product
+        localStorage.setItem("products",JSON.stringify(products))
+        reset()
+        display()
+        updateFlag=false
+        changebtn()
+    }
 }
+
+
 
 function reset(){
     productName.value=""
@@ -54,18 +84,19 @@ function deleteProduct(i){
     localStorage.setItem("products",JSON.stringify(products))
     display();
 }
+
 function updateProduct(i){
-    let product={
-        prodName:productName.value,
-        prodCategory:productCategory.value,
-        prodPrice:productPrice.value,
-        prodDescrition:productDescrition.value
-    }
-    products.splice(i,1,product)
-    localStorage.setItem("products",JSON.stringify(products))
-    reset()
-    display()
+
+    productName.value=products[i].prodName
+    productCategory.value=products[i].prodCategory
+    productPrice.value=products[i].prodPrice
+    productDescrition.value=products[i].prodDescrition
+    updateFlag=true;
+    changebtn()
+    currentIndex=i
+    
 }
+
 
 function search(){
     let cartona="";
