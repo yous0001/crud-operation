@@ -11,12 +11,25 @@ function changebtn(){
     if(updateFlag==false){
         document.getElementById("main-btn").innerHTML="ADD Product"
         document.getElementById("main-btn").className="btn btn-primary"
+        
     }
     else{
         document.getElementById("main-btn").innerHTML="update Product"
         document.getElementById("main-btn").className="btn btn-success"
+
     }
 }
+document.getElementById("main-btn").onclick=function(){
+    if(validation()){
+        if(updateFlag==false){
+            createProduct()
+        }
+        else{
+            edit()
+        }
+    }
+}
+
 if(localStorage.getItem("products")===null){
     products=[];
 }
@@ -26,7 +39,6 @@ else{
 }
 
 function createProduct(){
-    if(updateFlag==false){
         let product={
             prodName:productName.value,
             prodCategory:productCategory.value,
@@ -37,23 +49,22 @@ function createProduct(){
         localStorage.setItem("products",JSON.stringify(products))
         reset()
         display()
-    }
-    else{
-        let product={
-            prodName:productName.value,
-            prodCategory:productCategory.value,
-            prodPrice:productPrice.value,
-            prodDescrition:productDescrition.value
-        }
-        products[currentIndex]=product
-        localStorage.setItem("products",JSON.stringify(products))
-        reset()
-        display()
-        updateFlag=false
-        changebtn()
-    }
-}
 
+}
+function edit(){
+    let product={
+        prodName:productName.value,
+        prodCategory:productCategory.value,
+        prodPrice:productPrice.value,
+        prodDescrition:productDescrition.value
+    }
+    products[currentIndex]=product
+    localStorage.setItem("products",JSON.stringify(products))
+    reset()
+    display()
+    updateFlag=false
+    changebtn()
+}
 
 
 function reset(){
@@ -117,3 +128,35 @@ function search(){
     document.getElementById("tableBody").innerHTML=cartona;
 }
 
+function pnameValidation(){
+    let nameRegex=/^[A-Z][a-z]{3,9}$/
+    if(nameRegex.test(productName.value)){
+        return true;
+    }
+    else{
+        return false;
+        
+    }
+}
+function ppriceValidation(){
+    let priceRegex=/^[0-9]+$/
+    if(priceRegex.test(productPrice.value)){
+        return true;
+    }
+    else{
+        return false;
+
+    }
+}
+function validation(){
+
+    if(!pnameValidation()){
+        alert("enter avalid name")
+        return false;
+    }
+    else if(!ppriceValidation()){
+        alert("enter avalid price")
+        return false;
+    }
+    return true;
+}
